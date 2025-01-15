@@ -44,7 +44,7 @@ Follow these steps to get KSHMR up and running on your local machine:
 3. Set up the database:
    - Create a new MySQL database
    - Update the `application.properties` file with your database credentials
-
+     
 4. Build and run the application:
    - For backend:
      ```bash
@@ -57,19 +57,12 @@ Follow these steps to get KSHMR up and running on your local machine:
      npm start
      ```
 
-## 🤝 Contributing
-
-We welcome contributions from the community! If you have ideas for improvements or new features, please open an issue or submit a pull request. Check out our [Contribution Guidelines](CONTRIBUTING.md) for more information.
 
 ## 👥 Authors
 
 - Sahil Bhoite 
   - LinkedIn: [Sahil Bhoite](https://www.linkedin.com/in/sahil-bhoite/)
 
-- Maheshwari Jadhav
-  - LinkedIn: [Maheshwari Jadhav](https://www.linkedin.com/in/maheshwari-jadhav/)
-
-Feel free to connect with us on LinkedIn to learn more about our work and the KSHMR project!
 
 ## 📄 License
 
