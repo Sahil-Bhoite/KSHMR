@@ -66,6 +66,6 @@ Follow these steps to get KSHMR up and running on your local machine:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ---
