@@ -250,4 +250,19 @@ public class HomeController {
 
 	}
 
+	@GetMapping("/about")
+	public String about() {
+		return "about";
+	}
+
+	@GetMapping("/craftsmanship")
+	public String craftsmanship() {
+		return "craftsmanship";
+	}
+
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
+	}
+
 }

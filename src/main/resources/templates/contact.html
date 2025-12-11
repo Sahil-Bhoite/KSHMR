@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KSHMR - Contact Us</title>
+</head>
+
+<body>
+    <section>
+        <div class="container container-custom py-5 my-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <span class="text-uppercase letter-spacing-2 small text-muted mb-2 d-block">Get in Touch</span>
+                    <h1 class="display-4 font-heading">We'd Love to Hear From You</h1>
+                </div>
+            </div>
+
+            <div class="row g-5 justify-content-center">
+                <div class="col-lg-5">
+                    <div class="bg-secondary p-5 h-100 rounded-2">
+                        <h4 class="font-heading mb-4">Contact Information</h4>
+                        <ul class="list-unstyled mb-5">
+                            <li class="mb-3 d-flex">
+                                <i class="fa-solid fa-location-dot mt-1 me-3 text-muted"></i>
+                                <span class="text-muted">123 Heritage Lane, Srinagar,<br>Jammu & Kashmir, 190001</span>
+                            </li>
+                            <li class="mb-3 d-flex">
+                                <i class="fa-solid fa-envelope mt-1 me-3 text-muted"></i>
+                                <span class="text-muted">hello@kshmr-store.com</span>
+                            </li>
+                            <li class="mb-3 d-flex">
+                                <i class="fa-solid fa-phone mt-1 me-3 text-muted"></i>
+                                <span class="text-muted">+91 99060 12345</span>
+                            </li>
+                        </ul>
+
+                        <h4 class="font-heading mb-3">Wholesale Inquiries</h4>
+                        <p class="text-muted small">
+                            For bulk orders or partnership opportunities, please email us directly with your
+                            requirements.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <form>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label
+                                    class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Name</label>
+                                <input type="text"
+                                    class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+                                    placeholder="Your Name">
+                            </div>
+                            <div class="col-md-6">
+                                <label
+                                    class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Email</label>
+                                <input type="email"
+                                    class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+                                    placeholder="Your Email">
+                            </div>
+                            <div class="col-12">
+                                <label
+                                    class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Subject</label>
+                                <input type="text"
+                                    class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+                                    placeholder="Inquiry Subject">
+                            </div>
+                            <div class="col-12">
+                                <label
+                                    class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Message</label>
+                                <textarea
+                                    class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+                                    rows="5" placeholder="How can we help you?"></textarea>
+                            </div>
+                            <div class="col-12 mt-5">
+                                <button type="submit" class="btn btn-kshmr px-5">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

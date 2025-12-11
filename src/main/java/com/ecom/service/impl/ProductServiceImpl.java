@@ -107,6 +107,7 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> products = null;
 		if (ObjectUtils.isEmpty(category)) {
 			products = productRepository.findByIsActiveTrue();
+            products.forEach(p -> System.out.println("Product Image: " + p.getImage()));
 		} else {
 			products = productRepository.findByCategory(category);
 		}

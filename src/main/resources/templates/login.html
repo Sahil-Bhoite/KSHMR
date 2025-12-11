@@ -1,63 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="ISO-8859-1">
+    <title>KSHMR - Login</title>
 </head>
+
 <body>
-	<section>
+    <section>
+        <div class="container container-custom py-5 my-5">
+            <div class="row g-0 rounded-0 overflow-hidden shadow-sm" style="min-height: 600px;">
+                <!-- Image Side -->
+                <div class="col-md-6 d-none d-md-block position-relative"
+                    style="background-color: var(--color-bg-contrast);">
+                    <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759?q=80&w=2727&auto=format&fit=crop"
+                        style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" alt="Login">
+                    <div class="position-absolute top-50 start-50 translate-middle text-center text-white w-75">
+                        <span class="text-uppercase letter-spacing-2 small text-gold mb-3 d-block">Welcome
+                            Back</span>
+                        <h2 class="display-5 mb-3 font-heading" style="font-weight: 300;">The Art of Living</h2>
+                    </div>
+                </div>
 
-		<div class="container mt-5 p-5">
-			<div class="row">
-				<div class="col-md-6 p-5">
-					<img alt="" src="img/ecom.png" width="100%" height="400px">
-				</div>
-				<div class="col-md-6 mt-3 p-5">
-					<div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-						<div class="card-header">
-							<p class="fs-4 text-center">Login</p>
-							<div th:if="${param.error}"
-								class="alert alert-danger text-center">
+                <!-- Form Side -->
+                <div class="col-md-6 bg-white p-5 d-flex align-items-center">
+                    <div class="w-100 px-lg-5">
+                        <div class="text-center mb-5">
+                            <h3 class="font-heading mb-2">Sign In</h3>
+                            <p class="text-muted small text-uppercase letter-spacing-1">Access your account</p>
+                        </div>
 
-								<th:block
-									th:if="${session.SPRING_SECURITY_LAST_EXCEPTION!=null}">
-									[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
-								</th:block>
+                        <div th:if="${param.error}"
+                            class="alert alert-danger text-center rounded-0 border-0 bg-danger text-white mb-4">
+                            <small>
+                                <th:block th:if="${session.SPRING_SECURITY_LAST_EXCEPTION!=null}">
+                                    [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+                                </th:block>
+                            </small>
+                        </div>
 
+                        <div th:if="${param.logout}"
+                            class="alert alert-success text-center rounded-0 border-0 bg-secondary text-dark mb-4">
+                            <small>Logout Successfully</small>
+                        </div>
 
+                        <form action="/login" method="post">
+                            <div class="mb-4">
+                                <label class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Email
+                                    Address</label>
+                                <input required
+                                    class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+                                    name="username" type="email" placeholder="name@example.com">
+                            </div>
 
-							</div>
+                            <div class="mb-5">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <label
+                                        class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Password</label>
+                                    <a href="/forgot-password"
+                                        class="text-decoration-none small text-muted hover-text-dark">Forgot?</a>
+                                </div>
+                                <input required
+                                    class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+                                    name="password" type="password" placeholder="••••••••">
+                            </div>
 
-							<div th:if="${param.logout}" class="alert alert-success">
-								Logout Sucessfully</div>
-						</div>
-						<div class="card-body">
-							<form action="/login" method="post">
-								<div class="mb-3">
-									<label class="form-label">Email</label> <input required
-										class="form-control" name="username" type="email">
-								</div>
+                            <button type="submit" class="btn btn-kshmr w-100 py-3 mb-4">Sign In</button>
 
-								<div class="mb-3">
-									<label class="form-label">Password</label> <input required
-										class="form-control" name="password" type="password">
-								</div>
-								<button type="submit"
-									class="btn bg-primary text-white col-md-12">Login</button>
-							</form>
-						</div>
+                            <div class="text-center">
+                                <p class="text-muted small">New to KSHMR? <a href="/register"
+                                        class="text-dark fw-bold text-decoration-none border-bottom border-dark pb-1 text-uppercase letter-spacing-1">Create
+                                        Account</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-						<div class="card-footer text-center">
-							<a href="/forgot-password" class="text-decoration-none">Forgot Password</a><br>
-							Don't have an account ? <a href="#" class="text-decoration-none">Create
-								one </a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</section>
+        <style>
+            .hover-text-dark:hover {
+                color: var(--color-text-primary) !important;
+            }
+        </style>
+    </section>
 </body>
+
 </html>

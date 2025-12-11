@@ -1,60 +1,117 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>KSHMR - My Orders</title>
 </head>
+
 <body>
-	<section>
-		<div class="container mt-5 p-5">
-			<div class="row">
-				<p class="text-center fs-3">My Orders</p>
-				<th:block th:if="${session.succMsg}">
-					<p class="text-success fw-bold text-center">[[${session.succMsg}]]</p>
-					<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
-				</th:block>
+    <section>
+        <div class="container container-custom py-5 my-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <span class="text-uppercase letter-spacing-2 small text-muted mb-2 d-block">History</span>
+                    <h1 class="display-4 font-heading">My Orders</h1>
+                </div>
+            </div>
 
-				<th:block th:if="${session.errorMsg}">
-					<p class="text-danger fw-bold text-center">[[${session.errorMsg}]]</p>
-					<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
-				</th:block>
-				<div class="col-md-12 ">
+            <th:block th:if="${session.succMsg}">
+                <div class="alert alert-success alert-dismissible fade show col-md-8 offset-md-2 rounded-0 border-0 bg-secondary text-dark"
+                    role="alert">
+                    [[${session.succMsg}]]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
 
-					<table class="table table-bordered card-sh">
-						<thead >
-							<tr >
-								<th scope="col">Order Id</th>
-								<th scope="col">Date</th>
-								<th scope="col">Product Details</th>
-								<th scope="col">Price</th>
-								<th scope="col">Status</th>
-								<th scope="col">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="o:${orders}">
-								<th scope="row">[[${o.orderId}]]</th>
-								<td>[[${o.orderDate}]]</td>
-								<td>[[${o.product.title}]]</td>
-								<td>Quantity : [[${o.quantity}]] <br>Price :
-									[[${o.price}]] <br>Total Price :[[${o.quantity *
-									o.price}]]
-								</td>
-								<td>[[${o.status}]]</td>
-								<td><th:block th:if="${o.status!='Cancelled'}">
-										<a th:href="@{'/user/update-status?id='+${o.id}+'&st=6' }"
-											class="btn btn-sm btn-danger">Cancel</a>
-									</th:block> <th:block th:unless="${o.status!='Cancelled'}">
-										<a href="#" class="btn btn-sm btn-danger disabled" >Cancel</a>
-									</th:block></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
+            <th:block th:if="${session.errorMsg}">
+                <div class="alert alert-danger alert-dismissible fade show col-md-8 offset-md-2 rounded-0 border-0 bg-danger text-white"
+                    role="alert">
+                    [[${session.errorMsg}]]
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+                <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
 
-		</div>
-	</section>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0">
+                                    <thead class="bg-secondary">
+                                        <tr>
+                                            <th scope="col"
+                                                class="py-3 ps-4 text-muted small text-uppercase letter-spacing-1 fw-bold border-0">
+                                                Order ID</th>
+                                            <th scope="col"
+                                                class="py-3 text-muted small text-uppercase letter-spacing-1 fw-bold border-0">
+                                                Date</th>
+                                            <th scope="col"
+                                                class="py-3 text-muted small text-uppercase letter-spacing-1 fw-bold border-0">
+                                                Product</th>
+                                            <th scope="col"
+                                                class="py-3 text-muted small text-uppercase letter-spacing-1 fw-bold border-0">
+                                                Amount</th>
+                                            <th scope="col"
+                                                class="py-3 text-muted small text-uppercase letter-spacing-1 fw-bold border-0">
+                                                Status</th>
+                                            <th scope="col"
+                                                class="py-3 pe-4 text-end text-muted small text-uppercase letter-spacing-1 fw-bold border-0">
+                                                Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="o:${orders}" class="border-bottom">
+                                            <td class="py-4 ps-4 fw-bold text-charcoal">#[[${o.orderId}]]</td>
+                                            <td class="py-4 text-muted">[[${o.orderDate}]]</td>
+                                            <td class="py-4">
+                                                <span class="fw-bold d-block text-dark">[[${o.product.title}]]</span>
+                                                <span class="small text-muted">Qty: [[${o.quantity}]]</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="fw-medium"><i class="fas fa-rupee-sign fa-xs"></i>
+                                                    [[${o.quantity * o.price}]]</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span
+                                                    class="badge rounded-pill fw-normal text-uppercase letter-spacing-1 px-3 py-2"
+                                                    th:classappend="${o.status=='Cancelled'} ? 'bg-danger text-white' : (${o.status=='Delivered'} ? 'bg-success text-white' : 'bg-warning text-dark')">
+                                                    [[${o.status}]]
+                                                </span>
+                                            </td>
+                                            <td class="py-4 text-end pe-4">
+                                                <th:block th:if="${o.status!='Cancelled' && o.status!='Delivered'}">
+                                                    <a th:href="@{'/user/update-status?id='+${o.id}+'&st=6' }"
+                                                        class="btn btn-sm btn-outline-danger rounded-0 small text-uppercase letter-spacing-1">Cancel</a>
+                                                </th:block>
+                                                <th:block th:if="${o.status=='Cancelled'}">
+                                                    <span
+                                                        class="text-muted small text-uppercase letter-spacing-1">Cancelled</span>
+                                                </th:block>
+                                                <th:block th:if="${o.status=='Delivered'}">
+                                                    <a href="#"
+                                                        class="btn btn-sm btn-outline-kshmr rounded-0 small text-uppercase letter-spacing-1">Review</a>
+                                                </th:block>
+                                            </td>
+                                        </tr>
+                                        <tr th:if="${#lists.isEmpty(orders)}">
+                                            <td colspan="6" class="text-center py-5">
+                                                <p class="text-muted mb-4 lead">No orders found.</p>
+                                                <a href="/products" class="btn btn-kshmr px-4">Start Shopping</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>

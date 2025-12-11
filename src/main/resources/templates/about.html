@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KSHMR - Our Story</title>
+</head>
+
+<body>
+    <section>
+        <!-- Hero -->
+        <div class="position-relative bg-charcoal text-white py-5 overflow-hidden">
+
+            <div class="container container-custom position-relative z-1 py-5 my-5 text-center">
+                <span
+                    class="text-gold text-uppercase letter-spacing-2 small d-block mb-3 animate-fade-up">Heritage</span>
+                <h1 class="display-3 font-heading mb-4 animate-fade-up">The Soul of Kashmir</h1>
+                <p class="lead text-white-50 mx-auto animate-fade-up" style="max-width: 700px;">
+                    We are custodians of a legacy that spans centuries. KSHMR is not just a brand; it is a tribute to
+                    the artisans who weave magic with their hands.
+                </p>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="container container-custom py-5 my-5">
+            <div class="row g-5 align-items-center mb-5">
+                <div class="col-lg-6">
+                    <img src="/img/about-landscape.png" th:src="@{/img/about-landscape.png}" class="img-fluid shadow-lg"
+                        alt="Kashmiri Landscape">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="font-heading mb-4">A Timeless Tradition</h2>
+                    <p class="text-muted mb-4">
+                        Nestled in the Himalayas, the valley of Kashmir has been a cradle of art and culture for
+                        millennia. From the intricate weave of a Pashmina to the delicate carving of Walnut wood, every
+                        artifact tells a story of patience, precision, and passion.
+                    </p>
+                    <p class="text-muted">
+                        At KSHMR, we bridge the gap between these master artisans and the world. We curate only the
+                        finest, authentic pieces, ensuring that the legacy of Kashmiri craftsmanship continues to thrive
+                        in the modern era.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-5 align-items-center flex-lg-row-reverse">
+                <div class="col-lg-6">
+                    <!-- Placeholder for specific artisan image if available, else generic craft -->
+                    <img src="https://images.unsplash.com/photo-1605333333333-placeholder?auto=format"
+                        th:src="@{/img/about-craftsmanship.png}" class="img-fluid shadow-lg" alt="Artisan at work">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="font-heading mb-4">Ethical & Authentic</h2>
+                    <p class="text-muted mb-4">
+                        We believe in fair trade and transparency. Every purchase you make directly supports the
+                        livelihood of an artisan family. We are committed to preserving traditional techniques while
+                        ensuring sustainable practices.
+                    </p>
+                    <a href="/products" class="btn btn-kshmr">Explore Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

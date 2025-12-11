@@ -1,71 +1,164 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>KSHMR - Your Cart</title>
 </head>
+
 <body>
-	<section>
-		<div class="container-fluid mt-5 p-5">
+    <section>
+        <div class="container container-custom py-5 my-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <span class="text-uppercase letter-spacing-2 small text-muted mb-2 d-block">Review Order</span>
+                    <h1 class="display-4 font-heading">Your Selection</h1>
+                </div>
+            </div>
 
-			<div class="card card-sh">
-				<div class="card-header text-center">
-					<p class="fs-4">Cart Page</p>
-					<th:block th:if="${session.succMsg}">
-						<p class="text-success fw-bold">[[${session.succMsg}]]</p>
-						<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
-					</th:block>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Cart Items -->
+                    <div th:if="${!#lists.isEmpty(carts)}">
+                        <div class="table-responsive mb-5">
+                            <table class="table align-middle">
+                                <thead class="border-bottom border-secondary">
+                                    <tr>
+                                        <th scope="col"
+                                            class="py-3 ps-0 text-uppercase small letter-spacing-1 fw-bold text-muted border-0"
+                                            style="width: 50%;">Product</th>
+                                        <th scope="col"
+                                            class="py-3 text-uppercase small letter-spacing-1 fw-bold text-muted border-0 text-center">
+                                            Quantity</th>
+                                        <th scope="col"
+                                            class="py-3 pe-0 text-end text-uppercase small letter-spacing-1 fw-bold text-muted border-0">
+                                            Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="cart,c:${carts}" class="border-bottom">
+                                        <td class="ps-0 py-4 border-0">
+                                            <div class="d-flex align-items-center">
+                                                <a th:href="@{'/product/'+${cart.product.id}}"
+                                                    class="d-block me-4 position-relative"
+                                                    style="width: 100px; height: 120px; background-color: var(--color-bg-secondary);">
+                                                    <img th:src="@{'/img/product_img/'+${cart.product.image}}"
+                                                        class="w-100 h-100 object-fit-contain p-2">
+                                                </a>
+                                                <div>
+                                                    <h6 class="mb-1 font-body fw-medium"><a
+                                                            th:href="@{'/product/'+${cart.product.id}}"
+                                                            class="text-dark">[[${cart.product.title}]]</a></h6>
+                                                    <p class="mb-0 text-muted small">
+                                                        <span
+                                                            th:if="${cart.product.discountPrice != null && cart.product.discountPrice < cart.product.price}">&#8377;
+                                                            [[${cart.product.discountPrice}]]</span>
+                                                        <span
+                                                            th:unless="${cart.product.discountPrice != null && cart.product.discountPrice < cart.product.price}">&#8377;
+                                                            [[${cart.product.price}]]</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 border-0 text-center">
+                                            <div
+                                                class="d-inline-flex align-items-center border border-secondary rounded-pill px-2">
+                                                <a th:href="@{'/user/cartQuantityUpdate?sy=de&cid='+${cart.id}}"
+                                                    class="btn btn-sm btn-link text-dark p-2 text-decoration-none hover-text-primary"><i
+                                                        class="fas fa-minus fa-xs"></i></a>
+                                                <span class="px-2 small fw-bold">[[${cart.quantity}]]</span>
+                                                <a th:href="@{'/user/cartQuantityUpdate?sy=in&cid='+${cart.id}}"
+                                                    class="btn btn-sm btn-link text-dark p-2 text-decoration-none hover-text-primary"><i
+                                                        class="fas fa-plus fa-xs"></i></a>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 pe-0 border-0 text-end">
+                                            <span class="font-body fw-medium">&#8377; [[${cart.totalPrice}]]</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-					<th:block th:if="${session.errorMsg}">
-						<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
-						<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
-					</th:block>
-				</div>
-				<div class="card-body">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Sl No</th>
-								<th scope="col">Image</th>
-								<th scope="col">Product Name</th>
-								<th scope="col">Price</th>
-								<th scope="col" class="text-center">Quantity</th>
-								<th scope="col">Total Price</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="cart,c:${carts}">
-								<th scope="row">[[${c.count}]]</th>
-								<td><img
-									th:src="@{'/img/product_img/'+${cart.product.image}}"
-									width="70px" height="70px"></td>
-								<td>[[${cart.product.title}]]</td>
-								<td>[[${cart.product.discountPrice}]]</td>
-								<td class="text-center"><a
-									th:href="@{'/user/cartQuantityUpdate?sy=de&cid='+${cart.id}}">
-										<i class="fa-solid fa-minus"></i>
-								</a> [ [[${cart.quantity}]] ] <a
-									th:href="@{'/user/cartQuantityUpdate?sy=in&cid='+${cart.id}}">
-										<i class="fa-solid fa-plus"></i>
-								</a></td>
-								<td>[[${cart.totalPrice}]]</td>
-							</tr>
-							<tr>
-								<td colspan="4"></td>
-								<td class="fw-bold">Total Price</td>
-								<td class="fw-bold">&#8377; [[${totalOrderPrice}]]</td>
-							</tr>
+                        <!-- Summary & Checkout -->
+                        <div class="row justify-content-end">
+                            <div class="col-md-5 col-lg-4">
+                                <div class="bg-secondary p-4 rounded-2">
+                                    <h5 class="font-heading mb-4">Summary</h5>
+                                    <div class="d-flex justify-content-between mb-3 border-bottom pb-3">
+                                        <span class="text-uppercase small letter-spacing-1 text-muted">Subtotal</span>
+                                        <span class="font-body">&#8377; [[${totalOrderPrice}]]</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <span class="text-uppercase small letter-spacing-1 text-muted">Shipping</span>
+                                        <span class="font-body small text-muted">Calculated at Checkout</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-4 pt-2">
+                                        <span class="text-uppercase small letter-spacing-1 fw-bold">Total</span>
+                                        <span class="font-body fw-bold fs-5 text-sapphire">&#8377;
+                                            [[${totalOrderPrice}]]</span>
+                                    </div>
 
-						</tbody>
-					</table>
-					<div class="text-center">
-						<a href="/user/orders" class="btn btn-warning"> Proceed Payment</a>
-					</div>
-				</div>
-			</div>
-		</div>
+                                    <a href="/user/orders" class="btn btn-kshmr w-100 py-3 mb-3">Proceed to
+                                        Checkout</a>
+                                    <a href="/products"
+                                        class="btn btn-link w-100 text-uppercase small letter-spacing-1 text-muted text-decoration-none hover-text-dark">Continue
+                                        Shopping</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-	</section>
+                    <!-- Empty Cart -->
+                    <div th:if="${#lists.isEmpty(carts)}" class="text-center py-5">
+                        <div class="mb-4">
+                            <i class="fa-solid fa-basket-shopping fa-3x text-muted opacity-25"></i>
+                        </div>
+                        <h3 class="font-heading mb-3">Your shopping bag is empty</h3>
+                        <p class="lead text-muted mb-5">Looks like you haven't added anything to your cart yet.</p>
+                        <a href="/products" class="btn btn-kshmr px-5 py-3 shadow-sm">Start Shopping</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toast Messages -->
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
+                <div th:if="${session.succMsg}" class="toast show align-items-center text-white bg-sapphire border-0"
+                    role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="fa-solid fa-check-circle me-2"></i> [[${session.succMsg}]]
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                    <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                </div>
+
+                <div th:if="${session.errorMsg}" class="toast show align-items-center text-white bg-danger border-0"
+                    role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="fa-solid fa-circle-exclamation me-2"></i> [[${session.errorMsg}]]
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                    <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .hover-text-primary:hover {
+                color: var(--color-sapphire) !important;
+            }
+
+            .hover-text-dark:hover {
+                color: var(--color-text-primary) !important;
+            }
+        </style>
+    </section>
 </body>
+
 </html>

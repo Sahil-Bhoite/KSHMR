@@ -1,6 +1,5 @@
 package com.ecom.config;
 
-<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,15 +8,10 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-=======
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
->>>>>>> 7a2c68c (Initial commit with resolved issues)
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-<<<<<<< HEAD
 /**
  * Security configuration class for the application.
  * Configures authentication and authorization settings using Spring Security.
@@ -90,11 +84,5 @@ public class SecurityConfig {
 
         return http.build(); // Build and return the security filter chain
     }
-=======
-@Configuration
-public class SecurityConfig {
-
-    // ... (rest of the SecurityConfig class content remains the same)
->>>>>>> 7a2c68c (Initial commit with resolved issues)
 
 }

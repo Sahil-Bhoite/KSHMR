@@ -1,162 +1,158 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<title>KSHMR - My Profile</title>
 </head>
+
 <body>
 	<section>
-		<div class="container-fluid mt-5 p-5 bg-light">
-			<div class="row">
-				<div class="col-md-10 offset-md-1 ">
-
-					<p class="fs-3 text-center">My Profile</p>
-					<th:block th:if="${session.succMsg}">
-						<p class="text-success fw-bold  text-center">[[${session.succMsg}]]</p>
-						<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
-					</th:block>
-
-					<th:block th:if="${session.errorMsg}">
-						<p class="text-danger fw-bold  text-center">[[${session.errorMsg}]]</p>
-						<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
-					</th:block>
-					<hr>
-					<div class="text-center">
-						<img alt="" th:src="@{'../img/profile_img/'+${user.profileImage}}"
-							class="border p-2"
-							style="width: 110px; height: 110px; border-radius: 50%;">
-					</div>
-					<div class="col-md-8 offset-md-2 mt-4">
-						<table class="table table-borderless">
-
-							<tbody>
-								<form action="/user/update-profile" method="post"
-									enctype="multipart/form-data">
-								<tr>
-									<th scope="row">Name</th>
-									<td>:</td>
-									<td><input type="text" name="name" class="form-control"
-										th:value="${user.name}"></td>
-								</tr>
-								<tr>
-									<th scope="row">Mobile Number</th>
-									<td>:</td>
-									<td><input type="text" name="mobileNumber"
-										class="form-control" th:value="${user.mobileNumber}"></td>
-								</tr>
-								<tr>
-									<th scope="row">Email</th>
-									<td>:</td>
-									<td><input type="text" name="" class="form-control"
-										readonly th:value="${user.email}"></td>
-								</tr>
-								<tr>
-									<th scope="row">Address</th>
-									<td>:</td>
-									<td><input type="text" name="address" class="form-control"
-										th:value="${user.address}"></td>
-								</tr>
-								<tr>
-									<th scope="row">City</th>
-									<td>:</td>
-									<td><input type="text" name="city" class="form-control"
-										th:value="${user.city}"></td>
-								</tr>
-								<tr>
-									<th scope="row">State</th>
-									<td>:</td>
-									<td><input type="text" name="state" class="form-control"
-										th:value="${user.state}"></td>
-								</tr>
-								<tr>
-									<th scope="row">Pincode</th>
-									<td>:</td>
-									<td><input type="text" name="pincode" class="form-control"
-										th:value="${user.pincode}"></td>
-								</tr>
-								<tr>
-									<th scope="row">Image</th>
-									<td>:</td>
-									<td><input type="file" name="img" class="form-control"
-										value=""></td>
-								</tr>
-								<tr>
-									<th scope="row">Role</th>
-									<td>:</td>
-									<td><input type="text" name="" class="form-control"
-										readonly th:value="${user.role}"></td>
-								</tr>
-								<tr>
-									<th scope="row">Account Status</th>
-									<td>:</td>
-									<td><input type="text" name="" class="form-control"
-										readonly th:value="${user.isEnable}"> <input
-										type="hidden" th:value="${user.id}" name="id"></td>
-								</tr>
-
-								<tr>
-									<td></td>
-									<td class="text-center">
-										<button class="btn btn-sm bg-primary text-light">Update</button>
-									</td>
-								</tr>
-								</form>
-							</tbody>
-						</table>
-
-					</div>
-
+		<div class="container container-custom py-5 my-5">
+			<div class="row mb-5">
+				<div class="col-12 text-center">
+					<span class="text-uppercase letter-spacing-2 small text-muted mb-2 d-block">Account</span>
+					<h1 class="display-4 font-heading">My Profile</h1>
 				</div>
-				<hr>
-				<div class="col-md-10 offset-md-1 mt-1">
-					<div class="row">
-						<p class="text-center fs-3">Change Password</p>
-						<div class="col-md-6 offset-md-3">
-							<table class="table table-borderless">
+			</div>
 
-								<tbody>
-									<form action="/user/change-password" method="post">
-										<tr>
-											<th scope="row">Current Password</th>
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="bg-white p-5 shadow-sm border border-light">
+						<th:block th:if="${session.succMsg}">
+							<div class="alert alert-success text-center rounded-0 border-0 bg-secondary text-dark mb-4">
+								<small>[[${session.succMsg}]]</small>
+							</div>
+							<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+						</th:block>
 
-											<td><input type="text" name="currentPassword" class="form-control"></td>
-										</tr>
+						<th:block th:if="${session.errorMsg}">
+							<div class="alert alert-danger text-center rounded-0 border-0 bg-danger text-white mb-4">
+								<small>[[${session.errorMsg}]]</small>
+							</div>
+							<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+						</th:block>
 
-										<tr>
-											<th scope="row">New Password</th>
+						<div class="text-center mb-5">
+							<div class="position-relative d-inline-block">
+								<img alt="Profile" th:src="@{'../img/profile_img/'+${user.profileImage}}"
+									class="rounded-circle object-fit-cover border border-secondary p-1"
+									style="width: 120px; height: 120px;">
+							</div>
+						</div>
 
-											<td><input type="text" name="newPassword" class="form-control"></td>
-										</tr>
+						<!-- Update Profile Form -->
+						<form action="/user/update-profile" method="post" enctype="multipart/form-data" class="mb-5">
+							<input type="hidden" th:value="${user.id}" name="id">
 
-										<tr>
-											<th scope="row">Confirm Password</th>
+							<h5 class="font-heading mb-4 border-bottom pb-2">Personal Information</h5>
+							<div class="row g-4 mb-4">
+								<div class="col-md-6">
+									<label
+										class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Full
+										Name</label>
+									<input type="text" name="name"
+										class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+										th:value="${user.name}">
+								</div>
+								<div class="col-md-6">
+									<label
+										class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Mobile
+										Number</label>
+									<input type="text" name="mobileNumber"
+										class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+										th:value="${user.mobileNumber}">
+								</div>
+								<div class="col-md-6">
+									<label
+										class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Email</label>
+									<input type="text"
+										class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none text-muted"
+										readonly th:value="${user.email}">
+								</div>
+								<div class="col-md-6">
+									<label
+										class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Profile
+										Image</label>
+									<input type="file" name="img"
+										class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none">
+								</div>
+							</div>
 
-											<td><input type="text" name="confirmPassword" class="form-control"></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-center">
-												<button class="btn btn-sm bg-primary text-light col-md-4">Update</button>
-											</td>
+							<h5 class="font-heading mb-4 border-bottom pb-2 mt-5">Address Details</h5>
+							<div class="row g-4 mb-4">
+								<div class="col-12">
+									<label
+										class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Address</label>
+									<input type="text" name="address"
+										class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+										th:value="${user.address}">
+								</div>
+								<div class="col-md-4">
+									<label
+										class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">City</label>
+									<input type="text" name="city"
+										class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+										th:value="${user.city}">
+								</div>
+								<div class="col-md-4">
+									<label
+										class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">State</label>
+									<input type="text" name="state"
+										class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+										th:value="${user.state}">
+								</div>
+								<div class="col-md-4">
+									<label
+										class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Pincode</label>
+									<input type="text" name="pincode"
+										class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none"
+										th:value="${user.pincode}">
+								</div>
+							</div>
 
-										</tr>
-									</form>
-								</tbody>
-							</table>
+							<div class="text-end mt-4">
+								<button class="btn btn-kshmr px-4">Update Profile</button>
+							</div>
+						</form>
+
+						<!-- Change Password -->
+						<div class="pt-5 border-top">
+							<h5 class="font-heading mb-4">Change Password</h5>
+							<form action="/user/change-password" method="post">
+								<div class="row g-4 align-items-end">
+									<div class="col-md-4">
+										<label
+											class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Current
+											Password</label>
+										<input type="password" name="currentPassword"
+											class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none">
+									</div>
+									<div class="col-md-4">
+										<label
+											class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">New
+											Password</label>
+										<input type="password" name="newPassword"
+											class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none">
+									</div>
+									<div class="col-md-4">
+										<label
+											class="form-label text-muted small text-uppercase letter-spacing-1 fw-bold">Confirm
+											Password</label>
+										<input type="password" name="confirmPassword"
+											class="form-control border-0 border-bottom rounded-0 bg-transparent ps-0 shadow-none">
+									</div>
+									<div class="col-12 text-end mt-4">
+										<button class="btn btn-outline-kshmr px-4">Change Password</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
-
 			</div>
-
 		</div>
-
-
-
-
-
-
 	</section>
 </body>
+
 </html>

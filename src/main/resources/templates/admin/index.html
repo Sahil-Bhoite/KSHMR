@@ -3,90 +3,120 @@
 	th:replace="~{base::layout(~{::section})}">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>KSHMR - Admin Dashboard</title>
 </head>
 <body>
 	<section>
-		<div class="container p-5">
-			<p class="text-center fs-3 mt-4">Admin Dashboard</p>
-			<div class="row p-5">
-				<div class="col-md-4 mt-2">
+		<div class="container py-5 my-5">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h2 class="display-6 fw-bold text-indigo" style="font-family: var(--font-heading);">Admin Dashboard</h2>
+                    <p class="text-muted">Manage your store, products, and orders</p>
+                </div>
+            </div>
+            
+			<div class="row g-4 justify-content-center">
+                
+                <!-- Add Product -->
+				<div class="col-md-4 col-lg-3">
 					<a href="/admin/loadAddProduct" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-primary">
-								<i class="fa-solid fa-square-plus fa-3x"></i>
-								<h4>Add Product</h4>
+						<div class="card border-0 shadow-sm h-100 card-sh bg-white">
+							<div class="card-body text-center p-4">
+                                <div class="bg-light rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+								    <i class="fa-solid fa-plus fa-2x text-primary"></i>
+                                </div>
+								<h5 class="fw-bold text-indigo">Add Product</h5>
+                                <p class="text-muted small mb-0">Create new inventory</p>
 							</div>
 						</div>
 					</a>
 				</div>
 
-
-				<div class="col-md-4 mt-2">
+                <!-- Add Category -->
+				<div class="col-md-4 col-lg-3">
 					<a href="/admin/category" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-warning">
-								<i class="fa-solid fa-list fa-3x"></i>
-								<h4>Add Category</h4>
+						<div class="card border-0 shadow-sm h-100 card-sh bg-white">
+							<div class="card-body text-center p-4">
+                                <div class="bg-light rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+								    <i class="fa-solid fa-layer-group fa-2x text-warning"></i>
+                                </div>
+								<h5 class="fw-bold text-indigo">Category</h5>
+                                <p class="text-muted small mb-0">Manage collections</p>
 							</div>
 						</div>
 					</a>
 				</div>
 
-
-				<div class="col-md-4 mt-2">
+                <!-- View Products -->
+				<div class="col-md-4 col-lg-3">
 					<a href="/admin/products" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-success">
-								<i class="fa-solid fa-table-list fa-3x"></i>
-								<h4>View Product</h4>
+						<div class="card border-0 shadow-sm h-100 card-sh bg-white">
+							<div class="card-body text-center p-4">
+                                <div class="bg-light rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+								    <i class="fa-solid fa-tags fa-2x text-success"></i>
+                                </div>
+								<h5 class="fw-bold text-indigo">Products</h5>
+                                <p class="text-muted small mb-0">Edit or delete items</p>
 							</div>
 						</div>
 					</a>
 				</div>
 
-
-				<div class="col-md-4 mt-4">
+                <!-- Orders -->
+				<div class="col-md-4 col-lg-3">
 					<a href="/admin/orders" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-warning">
-								<i class="fa-solid fa-box-open fa-3x"></i>
-								<h4>Orders</h4>
+						<div class="card border-0 shadow-sm h-100 card-sh bg-white">
+							<div class="card-body text-center p-4">
+                                <div class="bg-light rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+								    <i class="fa-solid fa-boxes-packing fa-2x text-danger"></i>
+                                </div>
+								<h5 class="fw-bold text-indigo">Orders</h5>
+                                <p class="text-muted small mb-0">Track shipments</p>
 							</div>
 						</div>
 					</a>
 				</div>
 
-
-				<div class="col-md-4 mt-4">
+                <!-- Users -->
+				<div class="col-md-4 col-lg-3">
 					<a href="/admin/users?type=1" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-primary">
-								<i class="fa-solid fa-circle-user fa-3x"></i>
-								<h4>Users</h4>
+						<div class="card border-0 shadow-sm h-100 card-sh bg-white">
+							<div class="card-body text-center p-4">
+                                <div class="bg-light rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+								    <i class="fa-solid fa-users fa-2x text-info"></i>
+                                </div>
+								<h5 class="fw-bold text-indigo">Customers</h5>
+                                <p class="text-muted small mb-0">View registered users</p>
 							</div>
 						</div>
 					</a>
 				</div>
 
-
-				<div class="col-md-4 mt-4">
+                <!-- Add Admin -->
+				<div class="col-md-4 col-lg-3">
 					<a href="/admin/add-admin" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-primary">
-								<i class="fa-solid fa-user-plus fa-3x"></i>
-								<h4>Add Admin</h4>
+						<div class="card border-0 shadow-sm h-100 card-sh bg-white">
+							<div class="card-body text-center p-4">
+                                <div class="bg-light rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+								    <i class="fa-solid fa-user-shield fa-2x text-dark"></i>
+                                </div>
+								<h5 class="fw-bold text-indigo">Add Admin</h5>
+                                <p class="text-muted small mb-0">Grant permissions</p>
 							</div>
 						</div>
 					</a>
 				</div>
 
-				<div class="col-md-4 mt-4">
+                <!-- View Admins -->
+				<div class="col-md-4 col-lg-3">
 					<a href="/admin/users?type=2" class="text-decoration-none">
-						<div class="card card-sh">
-							<div class="card-body text-center text-primary">
-								<i class="fa-solid fa-circle-user fa-3x"></i>
-								<h4>Admin</h4>
+						<div class="card border-0 shadow-sm h-100 card-sh bg-white">
+							<div class="card-body text-center p-4">
+                                <div class="bg-light rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+								    <i class="fa-solid fa-id-card fa-2x text-secondary"></i>
+                                </div>
+								<h5 class="fw-bold text-indigo">Admins</h5>
+                                <p class="text-muted small mb-0">View staff accounts</p>
 							</div>
 						</div>
 					</a>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KSHMR - Craftsmanship</title>
+</head>
+
+<body>
+    <section>
+        <div class="container container-custom py-5 my-5">
+            <div class="text-center mb-5">
+                <span class="text-uppercase letter-spacing-2 small text-muted mb-2 d-block">The Process</span>
+                <h1 class="display-4 font-heading">Mastery in Every Detail</h1>
+            </div>
+
+            <div class="row g-4">
+                <!-- Pashmina -->
+                <div class="col-md-4">
+                    <div class="card border-0 h-100">
+                        <div class="card-img-top overflow-hidden" style="height: 300px;">
+                            <img src="/img/craft-pashmina.png" th:src="@{/img/craft-pashmina.png}"
+                                class="img-fluid w-100 h-100 object-fit-cover transition-slow hover-scale"
+                                alt="Weaving">
+                        </div>
+                        <div class="card-body px-0 pt-4 text-center">
+                            <h4 class="font-heading mb-3">The Art of Pashmina</h4>
+                            <p class="text-muted small">
+                                Harvested from the Changthangi goat at high altitudes, the wool is hand-spun and
+                                hand-woven. A single shawl can take months to complete, embodying the pinnacle of
+                                softness and warmth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wood Carving -->
+                <div class="col-md-4">
+                    <div class="card border-0 h-100">
+                        <div class="card-img-top overflow-hidden" style="height: 300px;">
+                            <img src="/img/craft-wood.png" th:src="@{/img/craft-wood.png}"
+                                class="img-fluid w-100 h-100 object-fit-cover transition-slow hover-scale"
+                                alt="Wood Carving">
+                        </div>
+                        <div class="card-body px-0 pt-4 text-center">
+                            <h4 class="font-heading mb-3">Walnut Wood Carving</h4>
+                            <p class="text-muted small">
+                                Indigenous to Kashmir, Walnut wood is known for its durability and rich color. Master
+                                carvers use intricate chiseling techniques to create deep, relief, and undercut designs
+                                inspired by flora and fauna.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paper Mache -->
+                <div class="col-md-4">
+                    <div class="card border-0 h-100">
+                        <div class="card-img-top overflow-hidden" style="height: 300px;">
+                            <img src="/img/craft-papermache.png" th:src="@{/img/craft-papermache.png}"
+                                class="img-fluid w-100 h-100 object-fit-cover transition-slow hover-scale"
+                                alt="Paper Mache">
+                        </div>
+                        <div class="card-body px-0 pt-4 text-center">
+                            <h4 class="font-heading mb-3">Paper Mache</h4>
+                            <p class="text-muted small">
+                                Sakhtsazi (making the object) and Naqashi (painting the surface) come together to create
+                                vibrant, intricate decor pieces. Gold leaf and mineral colors bring these masterpieces
+                                to life.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="/products" class="btn btn-outline-kshmr px-5">View Our Collection</a>
+            </div>
+        </div>
+
+        <style>
+            .hover-scale {
+                transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+
+            .hover-scale:hover {
+                transform: scale(1.1);
+            }
+        </style>
+    </section>
+</body>
+
+</html>

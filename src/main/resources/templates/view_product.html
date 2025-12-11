@@ -1,97 +1,203 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>KSHMR - [[${product.title}]]</title>
 </head>
+
 <body>
-<section>
-    <div class="container card-sh" style="margin-top: 70px; margin-bottom: 100px">
-
-        <div class="col-md-12 p-5">
-            <div class="row">
-                <th:block th:if="${session.succMsg}">
-                    <p class="text-success alert alert-success text-center" role="alert">[[${session.succMsg}]]</p>
-                    <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
-                </th:block>
-
-                <th:block th:if="${session.errorMsg}">
-                    <p class="text-danger text-center alert alert-danger">[[${session.errorMsg}]]</p>
-                    <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
-
-                </th:block>
-                <div class="col-md-6 text-end">
-                    <img alt="Kashmiri Saffron" src="/img/product_img/kashmiri_saffron.jpg" width="330px"
-                         height="400px">
-                </div>
-
-                <div class="col-md-6">
-
-                    <p class="fs-3">Kashmiri Saffron</p>
-                    <p>
-                        <span class="fw-bold">Description : </span><br>[[${product.description}]]
-                    </p>
-                    <p>
-                        <span class="fw-bold"> Product Details: </span> <br> Status
-                        :
-                        <th:block th:if="${product.stock>0}">
-                            <span class="badge bg-success">Available</span>
-                        </th:block>
-
-                        <th:block th:unless="${product.stock>0}">
-                            <span class="badge bg-warning">Out of Stock</span>
-                        </th:block>
-
-                        <br> Category: [[${product.category}]]<br> Policy : 7
-                        Days Replacement & Return
-                    </p>
-                    <p class="fs-5 fw-bold">
-                        Price :&nbsp; &nbsp; &nbsp; &nbsp;<i class="fas fa-rupee-sign"></i>
-                        [[${product.discountPrice}]] <span
-                                class="fs-6 text-decoration-line-through text-secondary">[[${product.price}]]</span>
-                        <span class="fs-6 text-success">[[${product.discount}]]%
-                            off</span>
-                    </p>
-
-                    <div class="row">
-                        <div class="col-md-4 text-success text-center p-2">
-                            <i class="fas fa-money-bill-wave fa-2x"></i>
-                            <p>Cash On Delivery</p>
-                        </div>
-                        <div class="col-md-4 text-danger text-center p-2">
-                            <i class="fas fa-undo-alt fa-2x"></i>
-                            <p>Return Available</p>
-                        </div>
-                        <div class="col-md-4 text-primary text-center p-2">
-                            <i class="fas fa-truck-moving fa-2x"></i>
-                            <p>Free Shipping</p>
-                        </div>
+    <section>
+        <div class="container-fluid px-0">
+            <div class="row g-0">
+                <!-- Left: Product Gallery -->
+                <div class="col-lg-7 bg-secondary position-relative">
+                    <!-- Back Button Mobile -->
+                    <div class="d-lg-none p-3 position-absolute top-0 start-0 z-3">
+                        <a href="/products" class="btn btn-sm btn-light rounded-circle shadow-sm"><i
+                                class="fa-solid fa-arrow-left"></i></a>
                     </div>
 
-                    <th:block th:if="${product.stock>0}">
-                        <th:block th:if="${user==null}">
-                            <a href="/signin" class="btn btn-danger col-md-12">Add To
-                                Cart</a>
-                        </th:block>
+                    <div class="d-flex flex-column gap-3 p-4 p-lg-5">
+                        <!-- Main Image -->
+                        <div class="position-relative bg-white p-5 d-flex align-items-center justify-content-center rounded-2 shadow-sm"
+                            style="min-height: 70vh;">
+                            <img th:src="@{'/img/'+${product.image}}" alt="Product Image" class="img-fluid"
+                                style="max-height: 60vh; object-fit: contain;">
+                        </div>
 
-                        <th:block th:unless="${user==null}">
-                            <a
-                                    th:href="@{'/user/addCart?pid='+${product.id}+'&uid='+${user.id}}"
-                                    class="btn btn-danger col-md-12">Add To Cart</a>
-                        </th:block>
+                        <!-- Gallery Grid (Static Layout for now) -->
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="bg-white p-4 d-flex align-items-center justify-content-center rounded-2"
+                                    style="height: 300px; overflow: hidden;">
+                                    <img th:src="@{'/img/'+${product.image}}" alt="Detail 1" class="img-fluid"
+                                        style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.5);">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-white p-4 d-flex align-items-center justify-content-center rounded-2"
+                                    style="height: 300px; overflow: hidden;">
+                                    <img th:src="@{'/img/'+${product.image}}" alt="Detail 2" class="img-fluid"
+                                        style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.2) translate(10%, 10%);">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    </th:block>
+                <!-- Right: Product Details -->
+                <div class="col-lg-5 bg-white">
+                    <div class="d-flex flex-column justify-content-center h-100 p-4 p-lg-5" style="min-height: 100vh;">
 
-                    <th:block th:unless="${product.stock>0}">
-                        <a href="#" class="btn text-white btn-warning col-md-12">Out
-                            of Stock</a>
-                    </th:block>
+                        <div class="mb-auto pt-lg-5">
+                            <nav aria-label="breadcrumb" class="mb-4">
+                                <ol class="breadcrumb bg-transparent p-0 m-0 small text-uppercase"
+                                    style="letter-spacing: 1px;">
+                                    <li class="breadcrumb-item"><a href="/" class="text-muted">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/products" class="text-muted">Shop</a></li>
+                                    <li class="breadcrumb-item active text-dark" aria-current="page">
+                                        [[${product.category}]]</li>
+                                </ol>
+                            </nav>
 
+                            <h1 class="display-5 mb-3 font-heading">[[${product.title}]]</h1>
+
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="h3 mb-0 font-body fw-medium text-sapphire">
+                                    <span
+                                        th:if="${product.discountPrice != null && product.discountPrice < product.price}">
+                                        &#8377;[[${product.discountPrice}]]
+                                        <small
+                                            class="text-muted text-decoration-line-through fs-6 ms-2">&#8377;[[${product.price}]]</small>
+                                    </span>
+                                    <span
+                                        th:unless="${product.discountPrice != null && product.discountPrice < product.price}">
+                                        &#8377;[[${product.price}]]
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p class="lead text-secondary mb-5"
+                                style="font-weight: 300; font-size: 1.1rem; line-height: 1.8;">
+                                [[${product.description}]]
+                            </p>
+
+                            <!-- Add to Cart Block -->
+                            <div class="mb-5 pb-5 border-bottom">
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <th:block th:if="${product.stock>0}">
+                                            <th:block th:if="${user==null}">
+                                                <a href="/signin" class="btn btn-kshmr w-100 py-3">Login to Purchase</a>
+                                            </th:block>
+                                            <th:block th:unless="${user==null}">
+                                                <a th:href="@{'/user/addCart?pid='+${product.id}+'&uid='+${user.id}}"
+                                                    class="btn btn-kshmr w-100 py-3 shadow-sm">Add To Cart</a>
+                                            </th:block>
+                                        </th:block>
+                                        <th:block th:unless="${product.stock>0}">
+                                            <button class="btn btn-secondary w-100 py-3" disabled>Out of Stock</button>
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <span class="small text-muted text-uppercase" style="letter-spacing: 1px;">
+                                        <i class="fa-solid fa-truck-fast me-2"></i> Free Shipping on all orders
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Details Accordion -->
+                            <div class="accordion accordion-flush" id="productAccordion">
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button
+                                            class="accordion-button collapsed bg-transparent shadow-none text-uppercase small fw-bold py-3 border-bottom"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            style="letter-spacing: 1px;">
+                                            Material & Care
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                        data-bs-parent="#productAccordion">
+                                        <div class="accordion-body text-muted small py-3">
+                                            Handcrafted from premium authentic materials sourced directly from Kashmir.
+                                            We recommend dry cleaning or gentle hand wash for textiles. Wood items
+                                            should be kept away from direct moisture.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button
+                                            class="accordion-button collapsed bg-transparent shadow-none text-uppercase small fw-bold py-3 border-bottom"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            style="letter-spacing: 1px;">
+                                            Shipping & Returns
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                        data-bs-parent="#productAccordion">
+                                        <div class="accordion-body text-muted small py-3">
+                                            We ship worldwide. Standard delivery takes 5-7 business days.
+                                            Returns are accepted within 14 days of delivery for a full refund (excluding
+                                            shipping).
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button
+                                            class="accordion-button collapsed bg-transparent shadow-none text-uppercase small fw-bold py-3 border-bottom"
+                                            type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseThree" style="letter-spacing: 1px;">
+                                            Artisan Story
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                        data-bs-parent="#productAccordion">
+                                        <div class="accordion-body text-muted small py-3">
+                                            This unique piece was created by master artisans in Srinagar.
+                                            By purchasing this product, you directly support the livelihood of
+                                            traditional craftsmen and the preservation of Kashmiri heritage.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+
+        <!-- Toast Messages -->
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
+            <div th:if="${session.succMsg}" class="toast show align-items-center text-white bg-sapphire border-0"
+                role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fa-solid fa-check-circle me-2"></i> [[${session.succMsg}]]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+                <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </div>
+
+            <div th:if="${session.errorMsg}" class="toast show align-items-center text-white bg-danger border-0"
+                role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fa-solid fa-circle-exclamation me-2"></i> [[${session.errorMsg}]]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+                <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>
